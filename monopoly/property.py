@@ -26,9 +26,10 @@ class BuildableProperty(Property):
     
 
 if __name__ == "__main__":
+    import json
+
     print("Creating Monopoly properties")
 
-    import json
     with open("metadata/properties.json") as pJSON:
         properties = json.load(pJSON)["properties"]
 
