@@ -6,8 +6,12 @@ from dataclasses import dataclass
 @dataclass
 class Space():
     tile: Tile
-    left: Space = None
-    right: Space = None
+    before: Space = None
+    after: Space = None
+
+    @property
+    def name(self):
+        return self.tile.name
 
 if __name__ == "__main__":
     print("Making a monopoly space")

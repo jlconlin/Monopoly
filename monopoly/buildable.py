@@ -5,10 +5,10 @@ from dataclasses import dataclass
 import pathlib
 import json
 
-from .property import Property
+from . import property
 
 @dataclass
-class Buildable(Property):
+class Buildable(property.Property):
     """
     This is just a property that you can build on
     """
@@ -34,4 +34,4 @@ def makeBuildables(buildables=None):
 if __name__ == "__main__":
     print("Creating Monopoly buildables")
 
-    buildables = makeProperties()
+    buildables = makeBuildables()
