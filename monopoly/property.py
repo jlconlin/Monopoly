@@ -4,8 +4,10 @@ import json
 
 from dataclass_wizard import JSONWizard
 
+from . import tile
+
 @dataclass
-class Property(JSONWizard):
+class Property(tile.Tile, JSONWizard):
     """
     Property 
     """

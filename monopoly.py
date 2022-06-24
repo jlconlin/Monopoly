@@ -17,11 +17,3 @@ if __name__ == "__main__":
                         help="JSON description of the neighborhoods")
 
     args = parser.parse_args()
-
-    with args.properties.open('r') as pJSON:
-        properties = json.load(pJSON)["properties"]
-
-    neighborhoods = {}
-    with args.neighborhoods.open('r') as nJSON:
-        for name, hood in  json.load(nJSON)['neighborhoods'].items():
-            neighborhoods[name] = Neighborhood(**hood, allProperties=properties)

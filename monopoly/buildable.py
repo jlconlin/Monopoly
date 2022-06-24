@@ -1,11 +1,9 @@
 # Note: in Python 3.10+, this import can be removed
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import pathlib
 import json
-
-from dataclass_wizard import JSONWizard
 
 from .property import Property
 
@@ -18,7 +16,6 @@ class Buildable(Property):
     multipliedrent: list[int] 
     housecost: int
     nHouses: int = 0
-
 
 def makeBuildables(buildables=None):
     """
