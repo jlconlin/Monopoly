@@ -2,7 +2,8 @@ import unittest
 import json
 import pathlib
 
-@unittest.skip("outdated")
+import monopoly.property
+
 class TestProperty(unittest.TestCase):
     def _testMembers(self, property):
         self.assertEqual(property.name, "Short Line Railroad")
@@ -19,7 +20,7 @@ class TestProperty(unittest.TestCase):
 
     def test_init_fromJSON(self):
         with open("metadata/properties.json") as pJSON:
-            properties = json.load(pJSON)["properties"]
+            properties = json.load(pJSON)["railroads"]
 
         property = monopoly.property.Property(**properties['shortlinerailroad'])
         self._testMembers(property)
