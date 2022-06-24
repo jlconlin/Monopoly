@@ -15,6 +15,11 @@ class Property(JSONWizard):
     name: str
     price: int
 
+    def __eq__(self, other):
+        return self.price == other.price
+    def __lt__(self, other):
+        return self.price < other.price
+
 @dataclass
 class Buildable(Property):
     """
@@ -26,10 +31,14 @@ class Buildable(Property):
     nHouses: int = 0
 
 
-def makeProperties(properties):
+def makeProperties(properties=None):
     """
-    Make property objects for everything in a JSON 
+    Make property objects for everything in a JSON. If no argument is given, the
+    property metadata is loaded from the default
     """
+    if not properties:
+        properties = pathlib.Path("metadata/properties.json")
+
     with properties.open('r') as JSON:
         ps = json.load(JSON)['properties']
         return { name: value for name, value in ps.items()}

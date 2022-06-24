@@ -52,10 +52,7 @@ class TestBuildable(unittest.TestCase):
         self.assertEqual(buildable.housecost, boardwalk['housecost'])
 
 class TestmakeProperties(unittest.TestCase):
-    def test_makeProperties(self):
-        filename = pathlib.Path("metadata/properties.json")
-        properties = monopoly.property.makeProperties(filename)
-
+    def _assertNames(self, properties):
         referenceNames = [
             "mediterraneanave",
             "balticave",
@@ -87,6 +84,12 @@ class TestmakeProperties(unittest.TestCase):
             "shortlinerailroad"]
         self.assertEqual(referenceNames, list(properties.keys()))
 
+    def test_makeProperties(self):
+        properties = monopoly.property.makeProperties()
+        self._assertNames(properties)
+        filename = pathlib.Path("metadata/properties.json")
+        properties = monopoly.property.makeProperties(filename)
+        self._assertNames(properties)
 
 if __name__ == "__main__":
     unittest.main(argv=['first-arg-is-ignored'], exit=False)
