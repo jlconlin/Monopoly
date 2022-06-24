@@ -3,11 +3,11 @@ import json
 import pathlib
 
 import monopoly.neighborhood
-import monopoly.property
+import monopoly.buildable
 
 class TestNeighborhood(unittest.TestCase):
     def setUp(self):
-        self.properties = monopoly.property.makeProperties()
+        self.properties = monopoly.buildable.makeBuildables()
 
     def _testMembers(self, neighborhood):
         self.assertEqual(neighborhood.color, "Purple")
