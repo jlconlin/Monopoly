@@ -1,16 +1,14 @@
 
 from dataclasses import dataclass
 
-from .property import BuildableProperty
+from dataclass_wizard import JSONWizard
+
+from .property import Buildable
 
 @dataclass
-class Neighborhood():
+class Neighborhood(JSONWizard):
     properties: list
     color: str
-    def __init__(self, properties, color, allProperties):
-        self.color = color
-        self.properties = [BuildableProperty(**allProperties[prop]) 
-                           for prop in properties]
 
 if __name__ == "__main__":
     import json

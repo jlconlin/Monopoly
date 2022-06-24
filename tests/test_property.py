@@ -1,5 +1,6 @@
 import unittest
 import json
+import pathlib
 
 import monopoly.property
 
@@ -49,6 +50,42 @@ class TestBuildable(unittest.TestCase):
         self.assertEqual(buildable.rent, boardwalk['rent'])
         self.assertEqual(buildable.multipliedrent, boardwalk['multipliedrent'])
         self.assertEqual(buildable.housecost, boardwalk['housecost'])
+
+class TestmakeProperties(unittest.TestCase):
+    def test_makeProperties(self):
+        filename = pathlib.Path("metadata/properties.json")
+        properties = monopoly.property.makeProperties(filename)
+
+        referenceNames = [
+            "mediterraneanave",
+            "balticave",
+            "orientalave",
+            "vermontave",
+            "connecticutave",
+            "stcharlesplace",
+            "statesave",
+            "virginiaave",
+            "stjamesplace",
+            "tennesseeave",
+            "newyorkave",
+            "kentuckyave",
+            "indianaave",
+            "illinoisave",
+            "atlanticave",
+            "ventnorave",
+            "marvingardens",
+            "pacificave",
+            "northcarolinaave",
+            "pennsylvaniaave",
+            "parkplace",
+            "boardwalk",
+            "electriccompany",
+            "waterworks",
+            "readingrailroad",
+            "pennsylvaniarailroad",
+            "borailroad",
+            "shortlinerailroad"]
+        self.assertEqual(referenceNames, list(properties.keys()))
 
 
 if __name__ == "__main__":
