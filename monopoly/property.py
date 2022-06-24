@@ -40,8 +40,13 @@ def makeProperties(properties=None):
         properties = pathlib.Path("metadata/properties.json")
 
     with properties.open('r') as JSON:
-        ps = json.load(JSON)['properties']
-        return { name: Property.from_dict(value) for name, value in ps.items()}
+        ps = json.load(JSON)
+        props = { name: Property.from_dict(value) 
+                 for name, value in ps['properties'].items()}
+        builds = { name: Buildable.from_dict(value) 
+                   for name, value in ps['buildables'].items()}
+
+        return {**builds, **props}
     
 
 if __name__ == "__main__":
@@ -49,8 +54,4 @@ if __name__ == "__main__":
 
     print("Creating Monopoly properties")
 
-    filename = pathlib.Path("metadata/properties.json")
-    properties = makeProperties(filename)
-
-    # baltic = BuildableProperty(**properties['balticave'])
-
+    properties = makeProperties()

@@ -5,11 +5,11 @@ from dataclasses import dataclass
 import pathlib
 import json
 
-from .property import Buildable
+from .property import Property
 
 @dataclass
 class Neighborhood():
-    properties: list[str]
+    properties: list[Property]
     color: str
 
     def __init__(self, globalProperties, color, properties):
