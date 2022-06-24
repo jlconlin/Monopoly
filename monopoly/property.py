@@ -41,7 +41,7 @@ def makeProperties(properties=None):
 
     with properties.open('r') as JSON:
         ps = json.load(JSON)['properties']
-        return { name: value for name, value in ps.items()}
+        return { name: Property.from_dict(value) for name, value in ps.items()}
     
 
 if __name__ == "__main__":

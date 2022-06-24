@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import pathlib
+import json
 
 from .property import Buildable
 
@@ -14,7 +16,7 @@ class Neighborhood():
         self.color = color
         self.properties = [globalProperties[name] for name in properties]
 
-def buildNeighborhoods(neighborhoods=None):
+def buildNeighborhoods(properties, neighborhoods=None):
     """
     Create all the neighborhoods described in a JSON file. If no argument is
     given, the neighborhood metadata is loaded from the default.
@@ -24,7 +26,8 @@ def buildNeighborhoods(neighborhoods=None):
 
     with neighborhoods.open('r') as JSON:
         ns = json.load(JSON)['neighborhoods']
-        return { name: Neighborhood(value) for name, value in ns.items() }
+        return { name: Neighborhood(properties, **value)
+                for name, value in ns.items() }
 
 if __name__ == "__main__":
     import json
