@@ -1,29 +1,24 @@
 
 from dataclasses import dataclass
+from dataclass_wizard import JSONWizard
 
 @dataclass
-class Property():
+class Property(JSONWizard):
     """
     Property 
     """
     name: str
     price: int
-    rent: int
 
 @dataclass
-class BuildableProperty(Property):
+class Buildable(Property):
     """
     This is just a property that you can build on
     """
+    rent: int
     multipliedrent: list
     housecost: int
     nHouses: int = 0
-
-    def __init__(self, **kwargs):
-        self.multipliedrent = kwargs.pop("multipliedrent")
-        self.housecost = kwargs.pop("housecost")
-        super().__init__(**kwargs)
-    
 
 if __name__ == "__main__":
     import json
@@ -33,5 +28,5 @@ if __name__ == "__main__":
     with open("metadata/properties.json") as pJSON:
         properties = json.load(pJSON)["properties"]
 
-    baltic = BuildableProperty(**properties['balticave'])
+    # baltic = BuildableProperty(**properties['balticave'])
 
