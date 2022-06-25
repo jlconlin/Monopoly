@@ -21,7 +21,7 @@ def makeRailroads(railroads=None):
     given, the railroad metadata is loaded from the default.
     """
     if not railroads:
-        railroads = pathlib.Path("metadata/properties.json")
+        railroads = pathlib.Path("metadata/monopoly.json")
 
     with railroads.open('r') as JSON:
         rs = json.load(JSON)

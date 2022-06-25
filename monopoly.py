@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Play monopoly')
     parser.add_argument('--properties', type=pathlib.Path,
-                        default="metadata/properties.json",
+                        default="metadata/monopoly.json",
                         help="JSON description of the properties")
     parser.add_argument('--neighborhoods', type=pathlib.Path,
                         default="metadata/neighborhoods.json",

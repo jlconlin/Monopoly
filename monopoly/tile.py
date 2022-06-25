@@ -58,11 +58,11 @@ def makeTiles(tiles=None):
                inspect.getmembers(sys.modules[__name__], inspect.isclass)}
 
     if not tiles:
-        tiles = pathlib.Path("metadata/tiles.json")
+        tiles = pathlib.Path("metadata/monopoly.json")
 
     allTiles = {}
     with tiles.open('r') as JSON:
-        ts = json.load(JSON)
+        ts = json.load(JSON)['tiles']
         for name, value in ts.items():
             try:
                 allTiles[name] = classes.get(value['type']).from_dict(value)
@@ -72,7 +72,7 @@ def makeTiles(tiles=None):
                 raise te
 
     return allTiles
-
+    
 if __name__ == "__main__":
     print("Creating monopoly tiles")
 

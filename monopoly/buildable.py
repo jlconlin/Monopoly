@@ -23,13 +23,12 @@ def makeBuildables(buildables=None):
     property metadata is loaded from the default
     """
     if not buildables:
-        buildables = pathlib.Path("metadata/properties.json")
+        buildables = pathlib.Path("metadata/monopoly.json")
 
     with buildables.open('r') as JSON:
         bs = json.load(JSON)
         return { name: Buildable.from_dict(value) 
                    for name, value in bs['buildables'].items()}
-    
 
 if __name__ == "__main__":
     print("Creating Monopoly buildables")

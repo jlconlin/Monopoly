@@ -27,7 +27,7 @@ class TestmakeRailroads(unittest.TestCase):
     def test_makeRailroads(self):
         railroads = monopoly.railroad.makeRailroads()
         self._assertNames(railroads)
-        filename = pathlib.Path("metadata/properties.json")
+        filename = pathlib.Path("metadata/monopoly.json")
         railroads = monopoly.railroad.makeRailroads(filename)
         self._assertNames(railroads)
 

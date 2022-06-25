@@ -19,7 +19,7 @@ class TestProperty(unittest.TestCase):
         self._testMembers(property)
 
     def test_init_fromJSON(self):
-        with open("metadata/properties.json") as pJSON:
+        with open("metadata/monopoly.json") as pJSON:
             properties = json.load(pJSON)["railroads"]
 
         property = monopoly.property.Property(**properties['shortlinerailroad'])

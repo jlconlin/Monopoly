@@ -59,7 +59,7 @@ class TestmakeBuildables(unittest.TestCase):
     def test_makebuildables(self):
         buildables = monopoly.buildable.makeBuildables()
         self._assertNames(buildables)
-        filename = pathlib.Path("metadata/properties.json")
+        filename = pathlib.Path("metadata/monopoly.json")
         buildables = monopoly.buildable.makeBuildables(filename)
         self._assertNames(buildables)
 
