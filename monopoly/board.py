@@ -2,14 +2,11 @@ import itertools
 import json
 import pathlib
 
-from . import buildable, tile, railroad
+from dataclasses import dataclass
 
-def overlapper(seq, size):
-    return (seq[pos:pos + size]
-            for pos in range(0, len(seq)))
+from . import buildable, tile, railroad, utility, space
 
-
-def getAllTiles(tiles=None):
+def getAllTiles(buildables=None, railroads=None, utilities=None, tiles=None):
     """
     Return all the "tiles" available for the game. These include:
         - buildable properties
@@ -17,10 +14,27 @@ def getAllTiles(tiles=None):
         - utilities
         - plain tiles
     """
-    if not tiles:
-        tiles = pathlib.Path("metadata/monopoly.json")
-    builds = buildable.makeBuildables(tiles)
-    railroads = railroad.makeRailroads(tiles)
+    builds = buildable.makeBuildables(buildables)
+    railroads = railroad.makeRailroads(railroads)
+    utilities = utility.makeUtilities(utilities)
+    tiles = tile.makeTiles(tiles)
+
+    return {**builds, **railroads, **utilities, **tiles}
+    
+
+@dataclass
+class Board():
+    """
+    Game board
+    """
+    tiles: list[space.Space]
+
+    def __post_init(self):
+        before = self.tiles[-1]
+        for tile in self.tiles:
+            tile.before = before
+            before.after = tile
+            before = tile
 
 
 if __name__ == "__main__":
@@ -29,8 +43,6 @@ if __name__ == "__main__":
     filename = pathlib.Path("metadata/board.json")
     with filename.open('r') as JSON:
         US = json.load(JSON)['US']
-
-    for pre, space, nex in overlapper(US, 3):
-        space.pre = pre
-        space.nex = nex
+    tiles = getAllTiles()
+    board = Board([tiles[tile] for tile in US])
 

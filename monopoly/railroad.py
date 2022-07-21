@@ -5,15 +5,13 @@ from dataclasses import dataclass
 import pathlib
 import json
 
-from dataclass_wizard import JSONWizard
-
 from .property import Property
 
 class Railroad(Property):
     """
     This is just a railroad. A little simpler than a buildable
     """
-    price: int = 200
+    pass
 
 def makeRailroads(railroads=None):
     """

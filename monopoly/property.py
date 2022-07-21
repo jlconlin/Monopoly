@@ -2,16 +2,13 @@ from dataclasses import dataclass, field
 import pathlib
 import json
 
-from dataclass_wizard import JSONWizard
-
-from . import tile
+from .tile import Tile
 
 @dataclass
-class Property(tile.Tile, JSONWizard):
+class Property(Tile):
     """
     Property 
     """
-    name: str
     price: int
 
     def __eq__(self, other):

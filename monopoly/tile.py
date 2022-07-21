@@ -14,6 +14,8 @@ import json
 
 from dataclass_wizard import JSONWizard
 
+from .space import Space
+
 @dataclass
 class Tile(JSONWizard):
     name: str
